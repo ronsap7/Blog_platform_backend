@@ -3,13 +3,23 @@ const Post = require("../models/Post");
 /// create a new post
 const createPost = async (req, res) => {
   try {
-    const { author, title, text, timestamp } = req.body;
+    console.log(req.body);
+    console.log(req.files);
+    const { author, title, text } = req.body;
     // console.log("author: ", req.files.authorPic);
     // console.log("imgURL: ", req.files.imgURL);
+    // const authorPic =
+    //   "https://backend-blogplatform.onrender.com/static/" + req.files.authorPic[0].filename;
+    // const imgURL =
+    //   "https://backend-blogplatform.onrender.com/static/" + req.files.imgURL[0].filename;
     const authorPic =
-      "https://backend-blogplatform.onrender.com/static/" + req.files.authorPic[0].filename;
+      "https://backend-blogplatform.onrender.com/static/" +
+      req.files.authorPic[0].filename;
     const imgURL =
-      "https://backend-blogplatform.onrender.com/static/" + req.files.imgURL[0].filename;
+      "https://backend-blogplatform.onrender.com/static/" +
+      req.files.imgURL[0].filename;
+
+    const timestamp = new Date();
     const post = await Post.create({
       author,
       authorPic,
@@ -22,9 +32,7 @@ const createPost = async (req, res) => {
       data: post,
     });
   } catch (error) {
-    res.status(500).json({
-      error,
-    });
+    res.status(500).json({ error: error.message });
   }
 };
 
@@ -64,9 +72,7 @@ const deleteOnePost = async (req, res) => {
       res.status(200).json({ msg: "Post Deleted successfully" });
     }
   } catch (error) {
-    res.status(500).json({
-      error,
-    });
+    res.status(500).json({ error: error.message });
   }
 };
 
