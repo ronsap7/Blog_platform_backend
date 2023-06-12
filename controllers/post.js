@@ -7,9 +7,9 @@ const createPost = async (req, res) => {
     // console.log("author: ", req.files.authorPic);
     // console.log("imgURL: ", req.files.imgURL);
     const authorPic =
-      "http://localhost:8000/static/" + req.files.authorPic[0].filename;
+      "https://backend-blogplatform.onrender.com/static/" + req.files.authorPic[0].filename;
     const imgURL =
-      "http://localhost:8000/static/" + req.files.imgURL[0].filename;
+      "https://backend-blogplatform.onrender.com/static/" + req.files.imgURL[0].filename;
     const post = await Post.create({
       author,
       authorPic,
