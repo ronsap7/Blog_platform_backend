@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const upload = require("../utils/multerUpload");
 
 const {
   getAllPosts,
@@ -9,7 +10,12 @@ const {
   getOnePost,
 } = require("../controllers/post");
 
-router.route("/").get(getAllPosts).post(createPost);
+router.route("/").get(getAllPosts);
+router.post(
+  "/",
+  upload.fields([{ name: "authorPic" }, { name: "imgURL" }]),
+  createPost
+);
 
 // router.route("/create");
 
