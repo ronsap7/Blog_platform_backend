@@ -16,12 +16,12 @@ app.use(express.urlencoded({extended: true}));
 //my routes
 
 
-const PORT = process.env.PORT || 8000;
+const port = process.env.PORT || 8000;
 
 app.get('/', (req, res) => {
   res.send('Welcome to API');
 });
 
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`.violet);
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
 });
